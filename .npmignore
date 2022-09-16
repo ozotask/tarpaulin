@@ -8,3 +8,5 @@ support/
 test/
 # dependencies
 node_modules
+package.json
+packkage-lock.json
