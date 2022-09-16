@@ -6,32 +6,34 @@
 // 추가 인자로 받은것 regex
 
 
-export default class Validator {
-    constructor ({
-        email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-        phone = /^(\+\d{1,3}[- ]?)?\d{10}$/,
-        name = /^[ㄱ-ㅣ가-힣a-zA-Z\s,.'-\pL]+$/,
-        birthDate = /(\d{4})(\d{2})(\d{2})/g
-    } = {}) {
-        this.email = email;
-        this.phone = phone;
-        this.name = name;
-        this.birthDate = birthDate;
-    }
+class Validator {
+  constructor ({
+    email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+    phone = /^(\+\d{1,3}[- ]?)?\d{10}$/,
+    name = /^[ㄱ-ㅣ가-힣a-zA-Z\s,.'-\pL]+$/,
+    date
+  } = {}) {
+    this.email = email;
+    this.phone = phone;
+    this.name = name;
+    this.date = date;
+  }
 
-    isEmail(string) {
-        return this.email.test(string);
-    }
+  isEmail(string) {
+    return this.email.test(string);
+  }
 
-    isPhone(number) {
-        return this.phone.test(number);
-    }
+  isPhone(number) {
+    return this.phone.test(number);
+  }
 
-    isBirthDate(date) {
-        return this.birthDate.test(date);
+  isDate(date) {
+    if (date instanceof Date) {
+      return true;
+    } else {
+      return false;
     }
-
-    isName(string) {
-        return this.name.test(string);
-    }
+  }
 }
+
+module.exports = Validator;
